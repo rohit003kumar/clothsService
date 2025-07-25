@@ -340,11 +340,20 @@ const filteredServices = services.filter((service) => {
     addToCart(service, quantity, selectedOptions)
   }
 
-  const handleProceedToBooking = () => {
-    if (cartItems.length > 0) {
-      setCurrentView("booking")
-    }
+  // const handleProceedToBooking = () => {
+  //   if (cartItems.length > 0) {
+  //     setCurrentView("booking")
+  //   }
+  // }
+const handleProceedToBooking = () => {
+  if (cartItems.length > 0) {
+    const newTimeSlots = generateTimeSlotsForDate(selectedDate);
+    setTimeSlots(newTimeSlots);
+    setSelectedTimeSlot(null);
+    setCurrentView("booking");
   }
+};
+
 
   const handleBackToServices = () => {
     setCurrentView("services")
