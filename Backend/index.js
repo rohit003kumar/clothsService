@@ -141,23 +141,23 @@ connectDB();
 app.use(compression());
 
 // Middleware
-app.use(cors({
-  credentials: true,
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// app.use(cors({
+//   credentials: true,
+//   origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
 
-// const allowedOrigins = [
-//   "http://localhost:5173", // dev
-//   "https://finalfoldmate-frontend.onrender.com" // deployed frontend
-// ];
+const allowedOrigins = [
+  "http://localhost:5173", // dev
+  "https://finalfoldmate-frontend.onrender.com" // deployed frontend
+];
 
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
