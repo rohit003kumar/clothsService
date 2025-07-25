@@ -84,19 +84,33 @@ const [ordersLoading, setOrdersLoading] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState("cod")
   const [orderTotal, setOrderTotal] = useState(0)
 
-// Orders State - Updated with Confirmed status
 
 
-// const [orders, setOrders] = useState([]);
-// const [ordersLoading, setOrdersLoading] = useState(true);
+
+
 
 // useEffect(() => {
 //   const fetchOrders = async () => {
 //     try {
-//       const res = await axios.get("http://localhost:5000/api/booking", {
-//         withCredentials: true, // if using cookies for auth
+//       const res = await axios.get("/api/booking", {
+//         withCredentials: true, // needed if you're using cookies
 //       });
-//       setOrders(res.data);
+
+//       // Attach washerman name and amount to each order if missing
+//       const updatedOrders = res.data.map(order => ({
+//         ...order,
+//         laundryman: order.laundryman || order.laundrymanName || "",
+//         total: order.total || order.totalAmount || 0,
+//       }));
+
+//       setOrders(updatedOrders);
+
+//       // Calculate totalSpent correctly
+//       const totalSpent = updatedOrders.reduce((sum, order) => {
+//         return sum + (typeof order.total === "number" ? order.total : Number(order.total) || 0);
+//       }, 0);
+
+//       console.log("Total Spent:", totalSpent);
 //     } catch (err) {
 //       console.error("Error fetching orders", err);
 //     } finally {
@@ -104,22 +118,56 @@ const [ordersLoading, setOrdersLoading] = useState(true);
 //     }
 //   };
 
+//   const token = localStorage.getItem("token");
+
+//   const fetchProfile = async () => {
+//     try {
+//       const res = await axios.get("/api/user/currentuser", {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       });
+
+//       // setProfile({
+//       //   name: res.data.name,
+//       //   email: res.data.email,
+//       //   contact: res.data.contact,
+//       //   image: "/src/profile.png",
+//       //   _id: res.data._id, // store ID for update route
+//       // });
+
+//           setProfile({
+//       name: res.data.name,
+//       email: res.data.email,
+//       contact: res.data.contact,
+//       image: res.data.image || "/placeholder.svg", // ✅ fixed
+//       address: res.data.address,
+//       _id: res.data._id,
+//     });
+
+//     } catch (err) {
+//       console.error("Failed to fetch profile:", err);
+//     }
+//   };
+
+//   fetchProfile();
 //   fetchOrders();
 // }, []);
-
-
-
+ 
 
 
 
 useEffect(() => {
+  const token = localStorage.getItem("token");
+
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("/api/booking", {
-        withCredentials: true, // needed if you're using cookies
+      const res = await api.get("/api/booking", {
+        headers: {
+          Authorization: `Bearer ${token}`, // ✅ add token
+        },
       });
 
-      // Attach washerman name and amount to each order if missing
       const updatedOrders = res.data.map(order => ({
         ...order,
         laundryman: order.laundryman || order.laundrymanName || "",
@@ -128,7 +176,6 @@ useEffect(() => {
 
       setOrders(updatedOrders);
 
-      // Calculate totalSpent correctly
       const totalSpent = updatedOrders.reduce((sum, order) => {
         return sum + (typeof order.total === "number" ? order.total : Number(order.total) || 0);
       }, 0);
@@ -141,33 +188,22 @@ useEffect(() => {
     }
   };
 
-  const token = localStorage.getItem("token");
-
   const fetchProfile = async () => {
     try {
-      const res = await axios.get("/api/user/currentuser", {
+      const res = await api.get("/api/user/currentuser", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`, // ✅ token added
+        },
       });
 
-      // setProfile({
-      //   name: res.data.name,
-      //   email: res.data.email,
-      //   contact: res.data.contact,
-      //   image: "/src/profile.png",
-      //   _id: res.data._id, // store ID for update route
-      // });
-
-          setProfile({
-      name: res.data.name,
-      email: res.data.email,
-      contact: res.data.contact,
-      image: res.data.image || "/placeholder.svg", // ✅ fixed
-      address: res.data.address,
-      _id: res.data._id,
-    });
-
+      setProfile({
+        name: res.data.name,
+        email: res.data.email,
+        contact: res.data.contact,
+        image: res.data.image || "/placeholder.svg",
+        address: res.data.address,
+        _id: res.data._id,
+      });
     } catch (err) {
       console.error("Failed to fetch profile:", err);
     }
@@ -176,43 +212,7 @@ useEffect(() => {
   fetchProfile();
   fetchOrders();
 }, []);
- 
 
-// const fetchOrders = async () => {
-//   try {
-//     const res = await axios.get("/api/booking", {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-
-//     const data = res.data;
-
-//     if (!Array.isArray(data)) {
-//       console.error("Expected orders to be an array but got:", data);
-//       setOrders([]);
-//       return;
-//     }
-
-//     const updatedOrders = data.map(order => ({
-//       ...order,
-//       laundryman: order.laundryman || order.laundrymanName || "",
-//       total: order.total || order.totalAmount || 0,
-//     }));
-
-//     setOrders(updatedOrders);
-
-//     const totalSpent = updatedOrders.reduce((sum, order) => {
-//       return sum + (typeof order.total === "number" ? order.total : Number(order.total) || 0);
-//     }, 0);
-
-//     console.log("Total Spent:", totalSpent);
-//   } catch (err) {
-//     console.error("Error fetching orders", err);
-//   } finally {
-//     setOrdersLoading(false);
-//   }
-// };
 
 
 
