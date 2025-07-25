@@ -95,11 +95,18 @@ function MainApp() {
     localStorage.setItem("selectedDate", selectedDate)
   }, [selectedDate])
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const newTimeSlots = generateTimeSlotsForDate(selectedDate)
+  //   setTimeSlots(newTimeSlots)
+  //   setSelectedTimeSlot(null)
+  // }, [selectedDate])
+useEffect(() => {
+  if (currentView === "booking") {
     const newTimeSlots = generateTimeSlotsForDate(selectedDate)
     setTimeSlots(newTimeSlots)
     setSelectedTimeSlot(null)
-  }, [selectedDate])
+  }
+}, [currentView, selectedDate])
 
   
 
