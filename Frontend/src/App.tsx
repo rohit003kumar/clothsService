@@ -502,8 +502,11 @@ const handleProceedToBooking = () => {
 
   return (
     <>
-      {currentView === "services" ? renderServicesView() : renderBookingView()}
+{/*       {currentView === "services" ? renderServicesView() : renderBookingView()} */}
 
+  <div key={`${currentView}-${selectedDate}`}>
+      {currentView === "services" ? renderServicesView() : renderBookingView()}
+    </div>
       {/* Location Selection Modal */}
       {showLocationModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
