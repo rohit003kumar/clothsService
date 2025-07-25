@@ -159,13 +159,38 @@ const [ordersLoading, setOrdersLoading] = useState(true);
 
 useEffect(() => {
   const token = localStorage.getItem("token");
+  console.log("Token from localStorage:", token);
 
-  const fetchOrders = async () => {
+ 
+  const fetchProfile = async () => {
     try {
-      const res = await api.get("/api/booking", {
+      const res = await axios.get("/api/user/currentuser", {
         headers: {
-          Authorization: `Bearer ${token}`, // ✅ add token
+          Authorization: `Bearer ${token}`,
         },
+        withCredentials: true,
+      });
+
+      setProfile({
+        name: res.data.name,
+        email: res.data.email,
+        contact: res.data.contact,
+        image: res.data.image || "/placeholder.svg",
+        address: res.data.address,
+        _id: res.data._id,
+      });
+    } catch (err) {
+      console.error("Failed to fetch profile:", err);
+    }
+  };
+
+ const fetchOrders = async () => {
+    try {
+      const res = await axios.get("/api/booking", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true, // Include this if backend uses cookies
       });
 
       const updatedOrders = res.data.map(order => ({
@@ -182,37 +207,16 @@ useEffect(() => {
 
       console.log("Total Spent:", totalSpent);
     } catch (err) {
-      console.error("Error fetching orders", err);
+       console.error("Error fetching orders:", err?.response?.data || err.message);
     } finally {
       setOrdersLoading(false);
     }
   };
 
-  const fetchProfile = async () => {
-    try {
-      const res = await api.get("/api/user/currentuser", {
-        headers: {
-          Authorization: `Bearer ${token}`, // ✅ token added
-        },
-      });
-
-      setProfile({
-        name: res.data.name,
-        email: res.data.email,
-        contact: res.data.contact,
-        image: res.data.image || "/placeholder.svg",
-        address: res.data.address,
-        _id: res.data._id,
-      });
-    } catch (err) {
-      console.error("Failed to fetch profile:", err);
-    }
-  };
 
   fetchProfile();
   fetchOrders();
 }, []);
-
 
 
 
