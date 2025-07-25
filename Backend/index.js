@@ -149,7 +149,7 @@ app.use(compression());
 
 const allowedOrigins = [
   "http://localhost:5173", // dev
-  "https://finalfoldmate-frontend.onrender.com" // deployed frontend
+  "https://cloths-frontend.onrender.com" // deployed frontend
 ];
 
 app.use(
