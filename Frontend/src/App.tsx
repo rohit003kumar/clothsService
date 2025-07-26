@@ -101,6 +101,15 @@ function MainApp() {
     setSelectedTimeSlot(null)
   }, [selectedDate])
 
+// ✅ Quick Fix: Regenerate time slots when view changes to booking
+useEffect(() => {
+  if (currentView === "booking") {
+    const newTimeSlots = generateTimeSlotsForDate(selectedDate);
+    setTimeSlots(newTimeSlots);
+    setSelectedTimeSlot(null);
+  }
+}, [currentView, selectedDate]);
+
 
   
 
@@ -129,23 +138,6 @@ useEffect(() => {
 }, []);
 
 
-
-// const fetchNearbyServices = async (lat, lng) => {
-//   try {
-//     const token = localStorage.getItem("token");
-//     if (!token) return;
-
-//     const res = await axios.get(`/api/customer/nearby-services`, {
-//       headers: { Authorization: `Bearer ${token}` },
-//       params: { lat, lng },
-//     });
-
-//     console.log("Nearby services response 🧾", res.data); // 👈 Add this
-//     setServices(res.data);
-//   } catch (error) {
-//     console.error("Failed to fetch nearby services:", error);
-//   }
-// };
 
 const fetchNearbyServices = async (lat, lng) => {
   try {
