@@ -1135,9 +1135,9 @@ const cancelLogout = () => {
           <button className={activePage === "Home" ? "active" : ""} onClick={() => { setActivePage("Home"); closeSidebar(); }}>
             🏠 Home
           </button>
-          <button className={activePage === "Book" ? "active" : ""} onClick={() => { setActivePage("Book"); closeSidebar(); }}>
+{/*           <button className={activePage === "Book" ? "active" : ""} onClick={() => { setActivePage("Book"); closeSidebar(); }}>
             📅 Book Service
-          </button>
+          </button> */}
           <button
   className={activePage === "Orders" ? "active" : ""}
   onClick={() => {
@@ -1336,7 +1336,7 @@ const cancelLogout = () => {
 
     <div className="booking-steps">
       {/* Step 1: Location */}
-      <div className="booking-step">
+{/*       <div className="booking-step">
         <div className="step-header">
           <span className="step-number">1</span>
           <h3>Set Your Location</h3>
@@ -1364,10 +1364,10 @@ const cancelLogout = () => {
       </div>
 
       {/* You can continue with Step 2 here */}
-    </div>
+{/*     </div>
   </div>
 )}
- */}
+  */}
 
          {/* {activePage === "Orders" && (
           <div className="orders-page">
