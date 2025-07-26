@@ -95,21 +95,23 @@ function MainApp() {
     localStorage.setItem("selectedDate", selectedDate)
   }, [selectedDate])
 
- useEffect(() => {
-  const newTimeSlots = generateTimeSlotsForDate(selectedDate);
-  console.log("Generated slots:", newTimeSlots);
-  setTimeSlots(newTimeSlots);
-  setSelectedTimeSlot(null);
-}, [selectedDate]);
+//  useEffect(() => {
+//   const newTimeSlots = generateTimeSlotsForDate(selectedDate);
+//   console.log("Generated slots:", newTimeSlots);
+//   setTimeSlots(newTimeSlots);
+//   setSelectedTimeSlot(null);
+// }, [selectedDate]);
 
 // ✅ Quick Fix: Regenerate time slots when view changes to booking
 useEffect(() => {
   if (currentView === "booking") {
+    console.log("Regenerating slots for booking view");
     const newTimeSlots = generateTimeSlotsForDate(selectedDate);
     setTimeSlots(newTimeSlots);
     setSelectedTimeSlot(null);
   }
-}, [currentView, selectedDate]);
+}, [currentView]); // ✅ Only when view changes
+
 
 
   
@@ -335,17 +337,13 @@ const filteredServices = services.filter((service) => {
 
 const handleProceedToBooking = () => {
   if (cartItems.length > 0) {
-    // Reset states before switching view
-    setSelectedTimeSlot(null);
-    const newSlots = generateTimeSlotsForDate(selectedDate);
-    setTimeSlots(newSlots);
-
     setCurrentView("booking");
   }
 };
 
 const handleBackToServices = () => {
   setCurrentView("services");
+  setTimeSlots([]); // ✅ clear slots to avoid stale state
 };
 
 
