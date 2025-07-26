@@ -102,15 +102,6 @@ function MainApp() {
 //   setSelectedTimeSlot(null);
 // }, [selectedDate]);
 
-// ✅ Quick Fix: Regenerate time slots when view changes to booking
-useEffect(() => {
-  if (currentView === "booking") {
-    const newTimeSlots = generateTimeSlotsForDate(selectedDate);
-    setTimeSlots(newTimeSlots);
-    setSelectedTimeSlot(null);
-  }
-}, [currentView, selectedDate]); // now runs if date changes too
-
 
 
 
@@ -329,56 +320,33 @@ const filteredServices = services.filter((service) => {
     addToCart(service, quantity, selectedOptions)
   }
 
-  // const handleProceedToBooking = () => {
-  //   if (cartItems.length > 0) {
-  //     setCurrentView("booking")
-  //   }
-  // }
-
-const handleProceedToBooking = () => {
-  if (cartItems.length > 0) {
-    setCurrentView("booking");
+  const handleProceedToBooking = () => {
+    if (cartItems.length > 0) {
+      setCurrentView("booking")
+    }
   }
-};
-
-const handleBackToServices = () => {
-  setCurrentView("services");
-  setTimeSlots([]); // ✅ clear slots to avoid stale state
-};
 
 
-  // const handleBackToServices = () => {
-  //   setCurrentView("services")
-  // }
 
-  // const handleCompleteOrder = () => {
-  //   setCurrentView("services")
-  //   clearCart()
-  //   setSelectedTimeSlot(null)
-  //   navigate("/payment", {
-  //     state: {
-  //       cartItems,
-  //       selectedDate,
-  //       selectedTimeSlot,
-  //     },
-  //   })
-  // }
 
-const handleCompleteOrder = () => {
-  setCurrentView("services");
-  clearCart();
-  setSelectedTimeSlot(null);
-  setSelectedDate(
-    new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]
-  ); // reset to tomorrow
-  navigate("/payment", {
-    state: {
-      cartItems,
-      selectedDate,
-      selectedTimeSlot,
-    },
-  });
-};
+  const handleBackToServices = () => {
+    setCurrentView("services")
+  }
+
+  const handleCompleteOrder = () => {
+    setCurrentView("services")
+    clearCart()
+    setSelectedTimeSlot(null)
+    navigate("/payment", {
+      state: {
+        cartItems,
+        selectedDate,
+        selectedTimeSlot,
+      },
+    })
+  }
+
+
 
   const handleNav = (path: string) => navigate(path)
 
