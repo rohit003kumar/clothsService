@@ -773,10 +773,10 @@ const AdminDashboard = () => {
                   <div className="action-icon">⏰</div>
                   <span>Manage Time Slots</span>
                 </button>
-                <button className="quick-action-btn" onClick={() => handleNavClick("Analytics")}>
+{/*                 <button className="quick-action-btn" onClick={() => handleNavClick("Analytics")}>
                   <div className="action-icon">📈</div>
                   <span>View Analytics</span>
-                </button>
+                </button> */}
               </div>
             </section>
 
@@ -1095,15 +1095,15 @@ const AdminDashboard = () => {
                     </div>
                   </div>
 
-                  <div className="specialties">
+{/*                   <div className="specialties">
                     {laundryman.specialties.map((specialty, index) => (
                       <span key={index} className="specialty-tag">
                         {specialty}
                       </span>
                     ))}
-                  </div>
+                  </div> */}
 
-                  <div className="working-hours">
+{/*                   <div className="working-hours">
                     <h5>Working Hours:</h5>
                     <div className="hours-list">
                       {laundryman.workingHours.map((hour, index) => (
@@ -1111,7 +1111,7 @@ const AdminDashboard = () => {
                           {hour}
                         </span>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
 
 
@@ -1724,7 +1724,7 @@ const AdminDashboard = () => {
                           ))}
                       </div>
                     </div>
-                    <div className="laundryman-schedule">
+{/*                     <div className="laundryman-schedule">
                       <h5>Working Hours</h5>
                       <div className="schedule-list">
                         {Array.isArray(selectedUserDashboard.workingHours) &&
@@ -1739,9 +1739,9 @@ const AdminDashboard = () => {
                         )}
                       </div>
                     </div>
+ */}
 
-
-                    <div className="laundryman-specialties">
+{/*                     <div className="laundryman-specialties">
                       <h5>Specialties</h5>
                       <div className="specialties-list">
                         {selectedUserDashboard.specialties.map((specialty, index) => (
@@ -1750,7 +1750,7 @@ const AdminDashboard = () => {
                           </span>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 )}
               </div>
