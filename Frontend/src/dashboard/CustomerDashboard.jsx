@@ -1325,7 +1325,8 @@ const cancelLogout = () => {
         )}
 
 
-
+                
+{/* 
   {activePage === "Book" && (
   <div className="book-page">
     <div className="book-header">
@@ -1366,7 +1367,7 @@ const cancelLogout = () => {
     </div>
   </div>
 )}
-
+ */}
 
          {/* {activePage === "Orders" && (
           <div className="orders-page">
