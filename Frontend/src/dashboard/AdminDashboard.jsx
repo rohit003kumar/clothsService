@@ -1724,7 +1724,7 @@ const AdminDashboard = () => {
                           ))}
                       </div>
                     </div>
-{/*                     <div className="laundryman-schedule">
+                    <div className="laundryman-schedule">
                       <h5>Working Hours</h5>
                       <div className="schedule-list">
                         {Array.isArray(selectedUserDashboard.workingHours) &&
@@ -1739,9 +1739,9 @@ const AdminDashboard = () => {
                         )}
                       </div>
                     </div>
- */}
 
-{/*                     <div className="laundryman-specialties">
+
+                    <div className="laundryman-specialties">
                       <h5>Specialties</h5>
                       <div className="specialties-list">
                         {selectedUserDashboard.specialties.map((specialty, index) => (
@@ -1750,7 +1750,7 @@ const AdminDashboard = () => {
                           </span>
                         ))}
                       </div>
-                    </div> */}
+                    </div>
                   </div>
                 )}
               </div>
