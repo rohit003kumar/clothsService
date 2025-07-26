@@ -95,11 +95,12 @@ function MainApp() {
     localStorage.setItem("selectedDate", selectedDate)
   }, [selectedDate])
 
-  useEffect(() => {
-    const newTimeSlots = generateTimeSlotsForDate(selectedDate)
-    setTimeSlots(newTimeSlots)
-    setSelectedTimeSlot(null)
-  }, [selectedDate])
+ useEffect(() => {
+  const newTimeSlots = generateTimeSlotsForDate(selectedDate);
+  console.log("Generated slots:", newTimeSlots);
+  setTimeSlots(newTimeSlots);
+  setSelectedTimeSlot(null);
+}, [selectedDate]);
 
 // ✅ Quick Fix: Regenerate time slots when view changes to booking
 useEffect(() => {
