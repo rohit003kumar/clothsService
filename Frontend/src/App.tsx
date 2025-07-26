@@ -105,12 +105,12 @@ function MainApp() {
 // ✅ Quick Fix: Regenerate time slots when view changes to booking
 useEffect(() => {
   if (currentView === "booking") {
-    console.log("Regenerating slots for booking view");
     const newTimeSlots = generateTimeSlotsForDate(selectedDate);
     setTimeSlots(newTimeSlots);
     setSelectedTimeSlot(null);
   }
-}, [currentView]); // ✅ Only when view changes
+}, [currentView, selectedDate]); // now runs if date changes too
+
 
 
 
@@ -351,18 +351,34 @@ const handleBackToServices = () => {
   //   setCurrentView("services")
   // }
 
-  const handleCompleteOrder = () => {
-    setCurrentView("services")
-    clearCart()
-    setSelectedTimeSlot(null)
-    navigate("/payment", {
-      state: {
-        cartItems,
-        selectedDate,
-        selectedTimeSlot,
-      },
-    })
-  }
+  // const handleCompleteOrder = () => {
+  //   setCurrentView("services")
+  //   clearCart()
+  //   setSelectedTimeSlot(null)
+  //   navigate("/payment", {
+  //     state: {
+  //       cartItems,
+  //       selectedDate,
+  //       selectedTimeSlot,
+  //     },
+  //   })
+  // }
+
+const handleCompleteOrder = () => {
+  setCurrentView("services");
+  clearCart();
+  setSelectedTimeSlot(null);
+  setSelectedDate(
+    new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]
+  ); // reset to tomorrow
+  navigate("/payment", {
+    state: {
+      cartItems,
+      selectedDate,
+      selectedTimeSlot,
+    },
+  });
+};
 
   const handleNav = (path: string) => navigate(path)
 
