@@ -95,18 +95,12 @@ function MainApp() {
     localStorage.setItem("selectedDate", selectedDate)
   }, [selectedDate])
 
-  // useEffect(() => {
-  //   const newTimeSlots = generateTimeSlotsForDate(selectedDate)
-  //   setTimeSlots(newTimeSlots)
-  //   setSelectedTimeSlot(null)
-  // }, [selectedDate])
-useEffect(() => {
-  if (currentView === "booking") {
+  useEffect(() => {
     const newTimeSlots = generateTimeSlotsForDate(selectedDate)
     setTimeSlots(newTimeSlots)
     setSelectedTimeSlot(null)
-  }
-}, [currentView, selectedDate])
+  }, [selectedDate])
+
 
   
 
@@ -340,19 +334,12 @@ const filteredServices = services.filter((service) => {
     addToCart(service, quantity, selectedOptions)
   }
 
-  // const handleProceedToBooking = () => {
-  //   if (cartItems.length > 0) {
-  //     setCurrentView("booking")
-  //   }
-  // }
-const handleProceedToBooking = () => {
-  if (cartItems.length > 0) {
-    const newTimeSlots = generateTimeSlotsForDate(selectedDate);
-    setTimeSlots(newTimeSlots);
-    setSelectedTimeSlot(null);
-    setCurrentView("booking");
+  const handleProceedToBooking = () => {
+    if (cartItems.length > 0) {
+      setCurrentView("booking")
+    }
   }
-};
+
 
 
   const handleBackToServices = () => {
