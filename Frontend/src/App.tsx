@@ -301,16 +301,24 @@ const handleManualLocation = async (address) => {
 
 
 const filteredServices = services.filter((service) => {
+  const name = (service.title || service.name || service.serviceName || "").toLowerCase();
+  const washerman =
+    (service.washerman?.name ||
+      service.washermanName ||
+      service.laundryman ||
+      "").toLowerCase();
+  const category = (service.category || "").toLowerCase();
+  const query = searchQuery.trim().toLowerCase();
+
   const matchesCategory =
-    selectedCategory === "all" ||
-    (service.category || "").toLowerCase() === selectedCategory.toLowerCase();
+    selectedCategory === "all" || category === selectedCategory.toLowerCase();
 
   const matchesSearch =
-    (service.name || "").toLowerCase().includes((searchQuery || "").toLowerCase()) ||
-    (service.washerman?.name || "").toLowerCase().includes((searchQuery || "").toLowerCase());
+    query === "" || name.includes(query) || washerman.includes(query);
 
   return matchesCategory && matchesSearch;
 });
+
 
 
 
