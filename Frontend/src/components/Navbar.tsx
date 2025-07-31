@@ -399,12 +399,18 @@ export default function Navbar({
   onCartClick,
 }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const location = useLocation();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem('token'));
-  }, []);
+  // useEffect(() => {
+  //   setIsLoggedIn(!!localStorage.getItem('token'));
+  // }, []);
+
+useEffect(() => {
+  setIsLoggedIn(!!localStorage.getItem('token'));
+}, [location]);
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
