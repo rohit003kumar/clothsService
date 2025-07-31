@@ -418,11 +418,17 @@ useEffect(() => {
     setIsMobileMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("token");
+  //   setIsLoggedIn(false);
+  //   navigate("/");
+  // };
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  setIsLoggedIn(false);
+  window.location.href = "/"; // 🔁 Force full reload
+};
 
   const navLinks = [
     { to: '/', label: 'Home' },
