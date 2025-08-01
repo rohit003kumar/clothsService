@@ -800,31 +800,111 @@ useEffect(() => {
 
 
 
-const fetchNearbyServices = async (lat, lng) => {
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+// const fetchNearbyServices = async (lat, lng) => {
+//   try {
+//     const token = localStorage.getItem("token");
+//     if (!token) return;
 
-    const res = await axios.get(`/api/customer/nearby-services`, {
+//     const res = await axios.get(`/api/customer/nearby-services`, {
+//       headers: { Authorization: `Bearer ${token}` },
+//       params: { lat, lng },
+//     });
+
+//     console.log("Nearby services response 🧾", res.data);
+
+//     // ✅ Validate the response before setting it
+//     if (Array.isArray(res.data)) {
+//       setServices(res.data);
+//     } else {
+//       console.error("❌ Invalid services response format:", res.data);
+//       setServices([]); // fallback to prevent crash
+//     }
+//   } catch (error) {
+//     console.error("Failed to fetch nearby services:", error);
+//     setServices([]); // fallback to empty on failure
+//   }
+// };
+
+// 👇 Define the function FIRST
+const fetchNearbyServices = async (lat: number, lng: number, token: string) => {
+  try {
+    const res = await axios.get("/api/customer/nearby-services", {
       headers: { Authorization: `Bearer ${token}` },
       params: { lat, lng },
     });
 
-    console.log("Nearby services response 🧾", res.data);
-
-    // ✅ Validate the response before setting it
+    console.log("🧾 Nearby services response:", res.data);
     if (Array.isArray(res.data)) {
       setServices(res.data);
     } else {
-      console.error("❌ Invalid services response format:", res.data);
-      setServices([]); // fallback to prevent crash
+      console.error("❌ Invalid nearby response format:", res.data);
+      fallbackToAll();
     }
-  } catch (error) {
-    console.error("Failed to fetch nearby services:", error);
-    setServices([]); // fallback to empty on failure
+  } catch (err) {
+    console.error("❌ Failed to fetch nearby services:", err);
+    fallbackToAll();
   }
 };
 
+// ✅ Then write useEffect below it
+useEffect(() => {
+  const fetchServices = async () => {
+    const token = localStorage.getItem("token");
+
+    try {
+      if (!token) {
+        const res = await axios.get("/api/product/all");
+        setServices(res.data || []);
+        return;
+      }
+
+      const profileRes = await axios.get("/api/user/currentuser", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const user = profileRes.data;
+      setIsLoggedIn(true);
+      setUserRole(user.role);
+
+      if (user.role === "customer") {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const lat = position.coords.latitude;
+              const lng = position.coords.longitude;
+              fetchNearbyServices(lat, lng, token); // ✅ NOW it exists
+            },
+            (err) => {
+              console.warn("❌ Location error:", err);
+              fallbackToAll();
+            }
+          );
+        } else {
+          fallbackToAll();
+        }
+      } else {
+        const res = await axios.get("/api/product/all");
+        setServices(res.data || []);
+      }
+    } catch (err) {
+      console.error("❌ Error fetching user or services:", err);
+      setIsLoggedIn(false);
+      fallbackToAll();
+    }
+  };
+
+  const fallbackToAll = async () => {
+    try {
+      const res = await axios.get("/api/product/all");
+      setServices(res.data || []);
+    } catch (err) {
+      console.error("❌ Failed to load fallback services:", err);
+      setServices([]);
+    }
+  };
+
+  fetchServices();
+}, []);
 
 
 const handleDetectLocation = () => {
