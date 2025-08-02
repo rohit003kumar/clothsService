@@ -1411,6 +1411,7 @@ const dashboardStats = {
                       📍 Set Manual Location
                     </button>
                   </div>
+                   */}
 
                   <div className="map-section">
                     <h4>🗺️ Interactive Map - Click to Select Location</h4>
@@ -1419,7 +1420,7 @@ const dashboardStats = {
                         📍 Click anywhere on the map to select your service location
                       </span>
                     </div>
- */}
+
                     <GoogleMapComponent
                       onLocationSelect={setSelectedMapLocation}
                       selectedLocation={selectedMapLocation}
