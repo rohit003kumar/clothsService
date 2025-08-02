@@ -1305,7 +1305,7 @@ const dashboardStats = {
                     )}
                   </div>
 
-                  <div className="manual-location-section" style={{ marginTop: "24px", padding: "16px", backgroundColor: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+{/*                   <div className="manual-location-section" style={{ marginTop: "24px", padding: "16px", backgroundColor: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
                     <h4>🔧 Manual Location Input</h4>
                     <p style={{ fontSize: "14px", color: "#6b7280", marginBottom: "16px" }}>
                       If GPS detection doesn't work, you can manually enter your coordinates
@@ -1419,7 +1419,7 @@ const dashboardStats = {
                         📍 Click anywhere on the map to select your service location
                       </span>
                     </div>
-
+ */}
                     <GoogleMapComponent
                       onLocationSelect={setSelectedMapLocation}
                       selectedLocation={selectedMapLocation}
