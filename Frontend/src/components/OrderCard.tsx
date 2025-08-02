@@ -83,7 +83,7 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
               <p className="text-sm text-gray-600 mb-1">Quantity: {quantity}</p>
               <p className="text-sm text-gray-700 mb-1">Payment: ₹{total} via {paymentMethod || 'N/A'}</p>
               <p className="text-sm text-gray-700 mb-1">Payment Status: {paymentStatus}</p>
-              <p className="text-sm text-gray-500">Washerman: {washermanName}</p>
+              <p className="text-sm text-gray-500">Dhobi : {washermanName}</p>
               <p className="text-sm text-gray-500">Contact: {washermanContact}</p>
               <p className="text-sm text-gray-500">Created At: {new Date(createdAt).toLocaleString()}</p>
             </div>
