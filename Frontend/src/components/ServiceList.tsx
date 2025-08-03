@@ -709,8 +709,8 @@ const getServiceTypeLabel = (input?: string) => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Washerman Services</h1>
-            <p className="text-gray-600 mt-1">Manage your washing services</p>
+            <h1 className="text-3xl font-bold text-gray-900">Dhobi Services</h1>
+            <p className="text-gray-600 mt-1">Manage your services</p>
           </div>
           <button
             onClick={onAddNew}
