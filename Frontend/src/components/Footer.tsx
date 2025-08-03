@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
           <div>
             <div className="flex items-center mb-4">
               <WashingMachine className="h-6 w-6 text-blue-400" />
-              <span className="ml-2 text-xl font-bold">FoldMate</span>
+              <span className="ml-2 text-xl font-bold">DhobiXpress</span>
             </div>
             <p className="text-slate-300 mb-6 pr-4">
               Making laundry simple and convenient for busy people with our revolutionary laundry service.
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-slate-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-slate-400 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} FoldMate. All rights reserved.
+              &copy; {new Date().getFullYear()} DhobiXpress. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a href="/terms" className="text-slate-400 text-sm hover:text-blue-400 transition-colors">Terms of Service</a>
