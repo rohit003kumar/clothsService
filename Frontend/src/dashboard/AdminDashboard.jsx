@@ -1047,7 +1047,7 @@ const AdminDashboard = () => {
               <div className="header-actions">
                 <input
                   type="text"
-                  placeholder="Search laundrymen..."
+                  placeholder="Search Dhobi..."
                   value={laundrymanSearchTerm}
                   onChange={(e) => setLaundrymanSearchTerm(e.target.value)}
                   className="search-input"
