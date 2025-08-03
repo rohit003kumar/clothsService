@@ -36,7 +36,7 @@ const MissionSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Mission & Values</h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            At FoldMate, we're on a mission to give you back your precious time by handling 
+            At DhobiXpress, we're on a mission to give you back your precious time by handling 
             one of life's most persistent chores with care, quality, and efficiency.
           </p>
         </div>
@@ -88,7 +88,7 @@ const MissionSection: React.FC = () => {
             <div>
               <h3 className="text-2xl md:text-3xl font-bold mb-4">Our Story</h3>
               <p className="mb-4">
-             FoldMate began in 2025 with a simple goal — to make laundry easier for everyone. 
+             DhobiXpress began in 2025 with a simple goal — to make laundry easier for everyone. 
              Tired of the daily hassle, we set out to build a smart,
               reliable laundry service that fits into modern lives. 
               With features like easy booking, real-time tracking,
@@ -97,13 +97,13 @@ const MissionSection: React.FC = () => {
               <p>
                What started as an idea is now a growing platform, helping students, 
                professionals, and families manage laundry effortlessly.
-               FoldMate – your laundry, simplified.
+               DhobiXpress – your laundry, simplified.
                 </p>
             </div>
             <div className="order-first md:order-last">
               <img 
                 src="https://images.pexels.com/photos/5591581/pexels-photo-5591581.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                alt="FoldMate team members smiling" 
+                alt="DhobiXpress team members smiling" 
                 className="rounded-lg shadow-lg w-full h-auto"
               />
             </div>
