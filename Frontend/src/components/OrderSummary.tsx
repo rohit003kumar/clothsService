@@ -164,7 +164,7 @@ export default function OrderSummary({
                       {getCategoryName(item?.service?.category || '')}
                     </p>
                     <p className="text-xs md:text-sm text-gray-600">
-                      Washerman: {getWashermanName(item)}
+                      Dhobi : {getWashermanName(item)}
                     </p>
                   </div>
                   <button
