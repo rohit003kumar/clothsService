@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
           <WashingMachine className="h-10 w-10 text-blue-600" />
         </div>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-800 mb-6">
-          About <span className="text-blue-600">FoldMate</span>
+          About <span className="text-blue-600">DhobiXpress</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-8">
           Revolutionizing the way people handle laundry with our convenient, 
