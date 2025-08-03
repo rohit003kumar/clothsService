@@ -113,7 +113,7 @@ const TestimonialsSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">What Our Customers Say</h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our satisfied customers have to say about FoldMate.
+            Don't just take our word for it. Here's what our satisfied customers have to say about DhobiXpress.
           </p>
         </div>
         
