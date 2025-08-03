@@ -1507,7 +1507,7 @@ const AdminDashboard = () => {
                   <span>{selectedOrder.customerName}</span>
                 </div>
                 <div className="info-item">
-                  <label>Laundryman</label>
+                  <label>Dhobi</label>
                   <span>{selectedOrder.laundrymanName || "Not Assigned"}</span>
                 </div>
                 <div className="info-item">
@@ -2002,7 +2002,7 @@ const AdminDashboard = () => {
                     <span>{selectedOrder.customerName}</span>
                   </div>
                   <div className="info-item">
-                    <label>Laundryman</label>
+                    <label>Dhobi</label>
                     <span>{selectedOrder.laundrymanName}</span>
                   </div>
                   <div className="info-item">
