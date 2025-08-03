@@ -102,7 +102,7 @@ const SignUp: React.FC = () => {
               <WashingMachine className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-2">
-              Join FoldMate
+              Join DhobiXpress
             </h1>
             <p className="text-gray-600">Create your account and get started!</p>
           </div>
