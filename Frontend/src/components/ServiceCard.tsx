@@ -84,7 +84,7 @@ export default function ServiceCard({ service, onAddToCart }: ServiceCardProps) 
             <div className="p-4 md:p-6">
                 <div className="mb-4">
                     <h3 className="text-base md:text-lg font-semibold text-gray-900 mb-2">{service.category}</h3>
-                    <p className="text-xs md:text-sm text-gray-600">Washerman: {service.washerman?.name}</p>
+                    <p className="text-xs md:text-sm text-gray-600"> Dhobi: {service.washerman?.name}</p>
                     {/* <p className="text-xs md:text-sm text-gray-600">WashermanId: {service.washerman?._id}</p> */}
                 </div>
 
