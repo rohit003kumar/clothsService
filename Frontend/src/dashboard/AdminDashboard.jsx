@@ -643,7 +643,7 @@ const AdminDashboard = () => {
           </button>
           <button className={activePage === "Laundrymen" ? "active" : ""} onClick={() => handleNavClick("Laundrymen")}>
             <span className="nav-icon">👨‍💼</span>
-            <span className="nav-text">Laundrymen</span>
+            <span className="nav-text">Dhobi</span>
           </button>
           <button className={activePage === "Orders" ? "active" : ""} onClick={() => handleNavClick("Orders")}>
             <span className="nav-icon">📦</span>
@@ -721,7 +721,7 @@ const AdminDashboard = () => {
                 <div className="admin-stat-card laundrymen">
                   <div className="stat-icon">👨‍💼</div>
                   <div className="stat-content">
-                    <h3>Laundrymen</h3>
+                    <h3>Dhobi</h3>
                     <p className="stat-number">{dashboardStats.totalLaundrymen}</p>
                     <span className="stat-label">{dashboardStats.activeLaundrymen} Active</span>
                   </div>
@@ -763,7 +763,7 @@ const AdminDashboard = () => {
                 </button>
                 <button className="quick-action-btn" onClick={() => handleNavClick("Laundrymen")}>
                   <div className="action-icon">👨‍💼</div>
-                  <span>Manage Laundrymen</span>
+                  <span>Manage Dhobi</span>
                 </button>
                 <button className="quick-action-btn" onClick={() => handleNavClick("Orders")}>
                   <div className="action-icon">📦</div>
@@ -1043,7 +1043,7 @@ const AdminDashboard = () => {
         {activePage === "Laundrymen" && (
           <div className="admin-laundrymen-page">
             <div className="page-header">
-              <h2>Laundryman Management</h2>
+              <h2>Dhobi Management</h2>
               <div className="header-actions">
                 <input
                   type="text"
@@ -1064,7 +1064,7 @@ const AdminDashboard = () => {
                   <div className="laundryman-header">
                     <img
                       src="/washer.webp"
-                      alt="Washer avatar"
+                      alt="Dhobi avatar"
                       className="customer-image w-16 h-16 rounded-full object-cover"
                     />
                     <div className="laundryman-info">
@@ -1179,7 +1179,7 @@ const AdminDashboard = () => {
                   <tr>
                     <th>Order ID</th>
                     <th>Customer</th>
-                    <th>Laundryman</th>
+                    <th>Dhobi</th>
                     <th>Items</th>
                     <th>Amount</th>
                     <th>Status</th>
@@ -1662,7 +1662,7 @@ const AdminDashboard = () => {
                 ) : (
                   <div className="laundryman-dashboard">
                     <div className="laundryman-info-card">
-                      <h4>Laundryman Details</h4>
+                      <h4>Dhobi Details</h4>
                       <div className="info-row"><strong>Name:</strong> {selectedUserDashboard.name}</div>
                       <div className="info-row"><strong>Email:</strong> {selectedUserDashboard.email}</div>
                       <div className="info-row"><strong>Contact:</strong> {selectedUserDashboard.contact}</div>
