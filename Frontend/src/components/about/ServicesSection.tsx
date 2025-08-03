@@ -81,7 +81,7 @@ const ServicesSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Services</h2>
           <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            FoldMate offers a range of comprehensive laundry solutions designed to meet your needs, 
+            DhobiXpress offers a range of comprehensive laundry solutions designed to meet your needs, 
             whether you're an individual, family, or business.
           </p>
         </div>
