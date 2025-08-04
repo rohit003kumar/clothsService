@@ -29,7 +29,7 @@ productRouter.put('/:id', isAuth, updateProduct);
 productRouter.delete('/:id', isAuth, deleteProduct);
 
 // Get all products
-productRouter.get('/all', isAuth, getAllProducts);
+productRouter.get('/all',  getAllProducts);
 
 // Get product by ID
 productRouter.get('/:id', isAuth, getProductById);
