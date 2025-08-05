@@ -122,69 +122,6 @@
 
 
 
-// import { useEffect, useState } from 'react';
-
-// const InstallPWAButton = () => {
-//   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-//   const [showButton, setShowButton] = useState(false);
-
-//   useEffect(() => {
-//     const handler = (e: any) => {
-//       console.log('✅ beforeinstallprompt event fired');
-//       e.preventDefault();
-//       setDeferredPrompt(e);
-//       setShowButton(true);
-//     };
-
-//     window.addEventListener('beforeinstallprompt', handler);
-
-//     return () => {
-//       window.removeEventListener('beforeinstallprompt', handler);
-//     };
-//   }, []);
-
-//   const handleInstallClick = async () => {
-//     if (!deferredPrompt) {
-//       alert("❌ Install prompt not available yet.\nTry interacting with the page (click or scroll) and reload.");
-//       return;
-//     }
-
-//     deferredPrompt.prompt();
-
-//     const { outcome } = await deferredPrompt.userChoice;
-//     if (outcome === 'accepted') {
-//       console.log('✅ User accepted the install prompt');
-//     } else {
-//       console.log('❌ User dismissed the install prompt');
-//     }
-
-//     setDeferredPrompt(null);
-//     setShowButton(false);
-//   };
-
-//   // Always show the button for now (debug mode)
-//   // You can switch to `if (!showButton) return null;` for production
-//   return (
-//     <button
-//       onClick={handleInstallClick}
-//       className="block w-full md:w-auto bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600"
-//     >
-//       📲 Download App
-//     </button>
-//   );
-// };
-
-// export default InstallPWAButton;
-
-
-
-
-
-
-
-
-
-
 import { useEffect, useState } from 'react';
 
 const InstallPWAButton = () => {
@@ -192,15 +129,6 @@ const InstallPWAButton = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    // Detect if already installed
-    const isStandalone =
-      window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-
-    if (isStandalone) {
-      console.log('🟦 App already installed. Hiding install button.');
-      return;
-    }
-
     const handler = (e: any) => {
       console.log('✅ beforeinstallprompt event fired');
       e.preventDefault();
@@ -209,7 +137,10 @@ const InstallPWAButton = () => {
     };
 
     window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handler);
+    };
   }, []);
 
   const handleInstallClick = async () => {
@@ -231,9 +162,8 @@ const InstallPWAButton = () => {
     setShowButton(false);
   };
 
-  // ❗ Real behavior: hide button unless available
-  if (!showButton) return null;
-
+  // Always show the button for now (debug mode)
+  // You can switch to `if (!showButton) return null;` for production
   return (
     <button
       onClick={handleInstallClick}
@@ -245,4 +175,12 @@ const InstallPWAButton = () => {
 };
 
 export default InstallPWAButton;
+
+
+
+
+
+
+
+
 
