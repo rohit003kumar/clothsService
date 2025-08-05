@@ -178,7 +178,7 @@ const SignIn: React.FC = () => {
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               >
                 <option value="customer">Customer</option>
-                <option value="washerman">Washer Man</option>
+                <option value="washerman">Dhobi</option>
                 <option value="admin">Admin</option>
               </select>
             </div>
