@@ -188,59 +188,63 @@
 
 
 
+"use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const InstallPWAButton = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handler = (e: any) => {
-      console.log("✅ beforeinstallprompt event fired");
+    const handleBeforeInstallPrompt = (e: any) => {
+      console.log("✅ beforeinstallprompt fired");
       e.preventDefault();
       setDeferredPrompt(e);
       setShowButton(true);
     };
 
-    window.addEventListener("beforeinstallprompt", handler);
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
-    return () => window.removeEventListener("beforeinstallprompt", handler);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    };
   }, []);
 
   const handleInstallClick = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const result = await deferredPrompt.userChoice;
-      console.log("👍 User response to the install prompt:", result);
-      if (result.outcome === "accepted") {
-        console.log("User accepted the install prompt");
-      } else {
-        console.log("User dismissed the install prompt");
-      }
-      setDeferredPrompt(null);
-      setShowButton(false);
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt(); // show the install popup
+
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === "accepted") {
+      console.log("✅ User accepted the install");
+    } else {
+      console.log("❌ User dismissed the install");
     }
+
+    setDeferredPrompt(null);
+    setShowButton(false);
   };
 
+  // Optional: hide button on iPhone (iOS doesn't support prompt)
+  useEffect(() => {
+    const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+    if (isIos) {
+      setShowButton(false);
+    }
+  }, []);
+
+  if (!showButton) return null;
+
   return (
-    showButton && (
-      <button
-        onClick={handleInstallClick}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Install App
-      </button>
-    )
+    <button
+      onClick={handleInstallClick}
+      className="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-xl shadow-lg z-50"
+    >
+      📲 Install App
+    </button>
   );
 };
 
 export default InstallPWAButton;
-
-
-
-
-
-
-
-
