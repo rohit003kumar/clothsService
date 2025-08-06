@@ -122,7 +122,74 @@
 
 
 
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
+
+// const InstallPWAButton = () => {
+//   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+//   const [showButton, setShowButton] = useState(false);
+
+//   useEffect(() => {
+//     const handler = (e: any) => {
+//       console.log('✅ beforeinstallprompt event fired');
+//       e.preventDefault();
+//       setDeferredPrompt(e);
+//       setShowButton(true);
+//     };
+
+//     window.addEventListener('beforeinstallprompt', handler);
+
+//     return () => {
+//       window.removeEventListener('beforeinstallprompt', handler);
+//     };
+//   }, []);
+
+//   const handleInstallClick = async () => {
+//     if (!deferredPrompt) {
+//       alert("❌ Install prompt not available yet.\nTry interacting with the page (click or scroll) and reload.");
+//       return;
+//     }
+
+//     deferredPrompt.prompt();
+
+//     const { outcome } = await deferredPrompt.userChoice;
+//     if (outcome === 'accepted') {
+//       console.log('✅ User accepted the install prompt');
+//     } else {
+//       console.log('❌ User dismissed the install prompt');
+//     }
+
+//     setDeferredPrompt(null);
+//     setShowButton(false);
+//   };
+
+//   // Always show the button for now (debug mode)
+//   // You can switch to `if (!showButton) return null;` for production
+// if (!showButton) return null;
+//   return (
+//     <button
+//       onClick={handleInstallClick}
+//       className="block w-full md:w-auto bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600"
+//     >
+//       📲 Download App
+//     </button>
+//   );
+// };
+
+// export default InstallPWAButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { useEffect, useState } from "react";
 
 const InstallPWAButton = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -130,53 +197,45 @@ const InstallPWAButton = () => {
 
   useEffect(() => {
     const handler = (e: any) => {
-      console.log('✅ beforeinstallprompt event fired');
+      console.log("✅ beforeinstallprompt event fired");
       e.preventDefault();
       setDeferredPrompt(e);
       setShowButton(true);
     };
 
-    window.addEventListener('beforeinstallprompt', handler);
+    window.addEventListener("beforeinstallprompt", handler);
 
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
-    };
+    return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   const handleInstallClick = async () => {
-    if (!deferredPrompt) {
-      alert("❌ Install prompt not available yet.\nTry interacting with the page (click or scroll) and reload.");
-      return;
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const result = await deferredPrompt.userChoice;
+      console.log("👍 User response to the install prompt:", result);
+      if (result.outcome === "accepted") {
+        console.log("User accepted the install prompt");
+      } else {
+        console.log("User dismissed the install prompt");
+      }
+      setDeferredPrompt(null);
+      setShowButton(false);
     }
-
-    deferredPrompt.prompt();
-
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      console.log('✅ User accepted the install prompt');
-    } else {
-      console.log('❌ User dismissed the install prompt');
-    }
-
-    setDeferredPrompt(null);
-    setShowButton(false);
   };
 
-  // Always show the button for now (debug mode)
-  // You can switch to `if (!showButton) return null;` for production
-if (!showButton) return null;
   return (
-    <button
-      onClick={handleInstallClick}
-      className="block w-full md:w-auto bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600"
-    >
-      📲 Download App
-    </button>
+    showButton && (
+      <button
+        onClick={handleInstallClick}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Install App
+      </button>
+    )
   );
 };
 
 export default InstallPWAButton;
-
 
 
 
