@@ -164,6 +164,7 @@ const InstallPWAButton = () => {
 
   // Always show the button for now (debug mode)
   // You can switch to `if (!showButton) return null;` for production
+if (!showButton) return null;
   return (
     <button
       onClick={handleInstallClick}
