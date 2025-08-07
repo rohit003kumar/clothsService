@@ -139,27 +139,27 @@ export default defineConfig({
         theme_color: '#0ea5e9',
         icons: [
           {
-            src: 'icons/icon-192x192.webp',
+            src: 'icons/icon-192x192.png',
             sizes: '192x192',
-            type: 'image/webp'
+            type: 'image/png'
           },
           {
-            src: 'icons/icon-512x512.webp',
+            src: 'icons/icon-512x512.png',
             sizes: '512x512',
-            type: 'image/webp'
+            type: 'image/png'
           }
         ],
         screenshots: [
           {
             src: 'icons/screenshots/home-wide.webp',
             sizes: '1280x720',
-            type: 'image/webp',
+            type: 'image/png',
             form_factor: 'wide'
           },
           {
             src: 'icons/screenshots/home-square.webp',
             sizes: '720x720',
-            type: 'image/webp',
+            type: 'image/png',
             form_factor: 'narrow'
           }
         ]
