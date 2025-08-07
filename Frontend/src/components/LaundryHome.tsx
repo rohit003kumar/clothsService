@@ -18,10 +18,10 @@ const LaundryHome = () => {
           <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow font-medium">
             Book Now
           </button>
-          <div className="flex items-center gap-1 text-gray-600 text-lg">
+{/*           <div className="flex items-center gap-1 text-gray-600 text-lg">
             <Star className="w-5 h-5 text-yellow-500" />
             <span className="font-semibold">4.8/5</span> (2,500+ reviews)
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -55,7 +55,7 @@ const LaundryHome = () => {
               icon: "🧼",
             },
             {
-              title: "Premium Wash",
+              title: "Wash",
               desc: "Deep cleaning with fabric softener",
               icon: "✨",
             },
