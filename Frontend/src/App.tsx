@@ -1260,44 +1260,6 @@ const filteredServices = services.filter((service) => {
   )
 
 
- {/* HOW IT WORKS */}
-      <section className="bg-gray-50 py-12 px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8">How It Works</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-           {[
-            {
-              title: "1. Schedule Pickup",
-              desc: "Book online or call us to schedule a convenient pickup time",
-              icon: "📅",
-            },
-            {
-              title: "2. We Clean",
-              desc: "Professional cleaning with eco-friendly detergents and care",
-              icon: "🧽",
-            },
-            {
-              title: "3. We Iron",
-              desc: "Expert ironing service for perfectly pressed clothes",
-              icon: "🧺",
-            },
-            {
-              title: "4. Free Delivery",
-              desc: "Clean, fresh clothes delivered back to your doorstep",
-              icon: "🚛",
-            },
-          ].map((step) => (
-            <div
-              key={step.title}
-              className="rounded-lg border p-6 bg-white shadow hover:shadow-md transition"
-            >
-              <div className="text-3xl mb-2">{step.icon}</div>
-              <h4 className="text-lg font-semibold">{step.title}</h4>
-              <p className="text-sm mt-1">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
 
 
   const renderBookingView = () => (
