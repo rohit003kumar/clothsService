@@ -1,11 +1,9 @@
-
-
 {
   "name": "Dobhi Laundry Services",
   "short_name": "Dobhi",
   "description": "Book washermen for pickup, wash, and delivery of clothes.",
-  "start_url": "/mainapp",
-  "scope": "/mainapp",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0ea5e9",
@@ -20,6 +18,12 @@
       "src": "icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "screenshots": [
