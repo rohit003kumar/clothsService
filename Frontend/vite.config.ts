@@ -123,8 +123,8 @@ export default defineConfig({
       includeAssets: [
         'icons/favicon.svg',
         'robots.txt',
-        'icons/icon-192x192.webp',
-        'icons/icon-512x512.webp',
+        'icons/icon-192x192.png',
+        'icons/icon-512x512.png',
         'icons/screenshots/home-wide.webp',
         'icons/screenshots/home-square.webp'
       ],
@@ -153,13 +153,13 @@ export default defineConfig({
           {
             src: 'icons/screenshots/home-wide.webp',
             sizes: '1280x720',
-            type: 'image/png',
+            type: 'image/webp',
             form_factor: 'wide'
           },
           {
             src: 'icons/screenshots/home-square.webp',
             sizes: '720x720',
-            type: 'image/png',
+            type: 'image/webp',
             form_factor: 'narrow'
           }
         ]
