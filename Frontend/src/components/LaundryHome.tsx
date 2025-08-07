@@ -142,7 +142,7 @@ const LaundryHome = () => {
     <div className="text-gray-800 font-sans text-sm">
       {/* HERO SECTION */}
       <section className="bg-blue-50 py-10 px-2 text-center">
-        <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+        <h1 className="text-1xl md:text-3xl font-bold leading-tight">
           Professional Laundry <br />
           <span className="text-blue-600">At Your Doorstep</span>
         </h1>
@@ -177,7 +177,7 @@ const LaundryHome = () => {
 
       {/* SERVICES */}
       <section className="bg-white py-6 px-2 text-center">
-        <h2 className="text-xl font-bold mb-4">Our Services</h2>
+        <h2 className="text-2xl font-bold mb-4">Our Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-sm">
           {[
             {
