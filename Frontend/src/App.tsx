@@ -1541,7 +1541,7 @@ import axios from '../src/utilss/axios.js' // Adjust the import path as necessar
 import { apiFetch } from "./utilss/apifetch"
 import ResetPassword from "./pagess/resetPassword";
 import AdminMessages from './pagess/AdminMessages'; // adjust path if needed
-
+import LaundryHome from './components/LaundryHome';
 
 
 
@@ -1973,6 +1973,10 @@ const filteredServices = services.filter((service) => {
           </div>
         </div>
       )}
+
+ <div>
+   <LaundryHome />
+</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8">
         <CategoryFilter
