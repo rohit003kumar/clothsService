@@ -5,7 +5,7 @@ const LaundryHome = () => {
   return (
     <div className="text-gray-600 font-sans">
       {/* HERO SECTION */}
-      <section className="bg-blue-50 py-10 px-4 text-center">
+      <section className="bg-blue-50 py-6 px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold">
           Professional Laundry <br />
           <span className="text-blue-600">At Your Doorstep</span>
