@@ -178,7 +178,7 @@ const LaundryHome = () => {
       {/* SERVICES */}
       <section className="bg-white py-6 px-2 text-center">
         <h2 className="text-2xl font-bold mb-4">Our Services</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 max-w-8xl mx-auto text-sm">
           {[
             {
               title: "Ironing Service",
