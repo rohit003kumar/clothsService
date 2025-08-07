@@ -133,11 +133,9 @@
 
 
 
+import { useEffect, useState } from 'react';
 
-
-import { useEffect, useState } from "react";
-
-const InstallPWAButton = () => {
+export default function InstallPWAButton() {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showButton, setShowButton] = useState(false);
 
@@ -148,41 +146,30 @@ const InstallPWAButton = () => {
       setShowButton(true);
     };
 
-    window.addEventListener("beforeinstallprompt", handler);
+    window.addEventListener('beforeinstallprompt', handler);
 
-    return () => {
-      window.removeEventListener("beforeinstallprompt", handler);
-    };
+    return () => window.removeEventListener('beforeinstallprompt', handler);
   }, []);
 
   const handleInstall = async () => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
-      const choiceResult = await deferredPrompt.userChoice;
-      if (choiceResult.outcome === "accepted") {
-        console.log("User accepted the install prompt");
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
       } else {
-        console.log("User dismissed the install prompt");
+        console.log('User dismissed the install prompt');
       }
       setDeferredPrompt(null);
       setShowButton(false);
     }
   };
 
+  if (!showButton) return null;
+
   return (
-    showButton && (
-      <button onClick={handleInstall} className="install-button">
-        Install App
-      </button>
-    )
+    <button onClick={handleInstall} style={{ padding: '10px 20px' }}>
+      📲 Install App
+    </button>
   );
-};
-
-export default InstallPWAButton;
-
-
-
-
-
-
-
+}
