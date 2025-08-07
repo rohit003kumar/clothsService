@@ -25,17 +25,17 @@ const LaundryHome = () => {
       {/* FEATURES */}
       <section className="bg-blue-50 py-5 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div>
-          <div className="text-blue-600 text-3xl">✔️</div>
+          <div className="text-blue-600 text-4xl">✔️</div>
           <h3 className="text-xl font-semibold mt-2">Quality Guaranteed</h3>
           <p>100% satisfaction or money back</p>
         </div>
         <div>
-          <div className="text-blue-600 text-3xl">🛡️</div>
+          <div className="text-blue-600 text-4xl">🛡️</div>
           <h3 className="text-xl font-semibold mt-2">Safe & Secure</h3>
           <p>Eco-friendly cleaning products</p>
         </div>
         <div>
-          <div className="text-blue-600 text-3xl">🚚</div>
+          <div className="text-blue-600 text-4xl">🚚</div>
           <h3 className="text-xl font-semibold mt-2">Free Delivery</h3>
           <p>Convenient doorstep service</p>
         </div>
@@ -43,7 +43,7 @@ const LaundryHome = () => {
 
       {/* SERVICES */}
       <section className="bg-white py-9 px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8">Our Services</h2>
+        <h2 className="text-4xl font-bold mb-8">Our Services</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {[
             {
