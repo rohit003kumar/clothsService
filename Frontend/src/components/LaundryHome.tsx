@@ -5,7 +5,7 @@ const LaundryHome = () => {
   return (
     <div className="text-gray-600 font-sans">
       {/* HERO SECTION */}
-      <section className="bg-blue-50 py-6 px-4 text-center">
+      <section className="bg-blue-50 py-5 px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold">
           Professional Laundry <br />
           <span className="text-blue-600">At Your Doorstep</span>
@@ -23,7 +23,7 @@ const LaundryHome = () => {
       </section>
 
       {/* FEATURES */}
-      <section className="bg-blue-50 py-8 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <section className="bg-blue-50 py-5 px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div>
           <div className="text-blue-600 text-3xl">✔️</div>
           <h3 className="text-xl font-semibold mt-2">Quality Guaranteed</h3>
