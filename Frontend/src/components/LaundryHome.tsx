@@ -159,17 +159,17 @@ const LaundryHome = () => {
       {/* FEATURES */}
       <section className="bg-blue-50 py-4 px-2 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
         <div>
-          <div className="text-blue-600 text-xl">✔️</div>
+          <div className="text-blue-600 text-2xl">✔️</div>
           <h3 className="text-base font-semibold mt-1">Quality Guaranteed</h3>
           <p className="text-xs">100% satisfaction or money back</p>
         </div>
         <div>
-          <div className="text-blue-600 text-xl">🛡️</div>
+          <div className="text-blue-600 text-2xl">🛡️</div>
           <h3 className="text-base font-semibold mt-1">Safe & Secure</h3>
           <p className="text-xs">Eco-friendly cleaning products</p>
         </div>
         <div>
-          <div className="text-blue-700 text-xxl">🚚</div>
+          <div className="text-blue-700 text-3xl">🚚</div>
           <h3 className="text-base font-semibold mt-1">Free Delivery</h3>
           <p className="text-xs">Convenient doorstep service</p>
         </div>
