@@ -10,7 +10,7 @@ const LaundryHome = () => {
           Professional Laundry <br />
           <span className="text-blue-600">At Your Doorstep</span>
         </h1>
-        <p className="mt-4 text-lg max-w-2xl mx-auto">
+        <p className="mt-1 text-md max-w-2xl mx-auto">
           Experience hassle-free laundry service with pickup and delivery.
           Quality cleaning, affordable prices, and reliable service guaranteed.
         </p>
