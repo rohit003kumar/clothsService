@@ -214,7 +214,7 @@ const handleLogout = () => {
               <li>
 {/*                 <InstallPWAButton /> */}
 <a
-  href="/my-laundry-app.apk"
+  href="/app-debug.apk"
   download
   className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
 >
