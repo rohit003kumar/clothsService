@@ -131,10 +131,12 @@ console.log('🧬 Hashed token saved in DB:', hashedToken);
   user.resetPasswordExpire = expireTime;
   await user.save();
 
-//   const resetURL = `http://localhost:3000/reset-password/${resetToken}`;
-const resetURL = `http://localhost:5173/reset-password/${resetToken}`;
+
+// const resetURL = `http://localhost:5173/reset-password/${resetToken}`;
 // or if deployed:
 // const resetURL = `https://yourfrontend.com/reset-password/${resetToken}`;
+const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+
 
   const message = `You requested a password reset. Click the link to reset your password: ${resetURL}`;
 
