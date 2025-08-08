@@ -2261,8 +2261,6 @@
 
 
 
-
-
 "use client"
 
 // File: src/App.tsx
@@ -2677,11 +2675,21 @@ const filteredServices = services.filter((service) => {
   const handleProceedToBooking = () => {
     if (cartItems.length > 0) {
       setCurrentView("booking")
+      
+      // ✅ FIXED: Automatically refresh time slots when entering booking view
+      const newTimeSlots = generateTimeSlotsForDate(selectedDate)
+      setTimeSlots(newTimeSlots)
+      setSelectedTimeSlot(null)
     }
   }
 
   const handleBackToServices = () => {
     setCurrentView("services")
+    
+    // ✅ FIXED: Automatically refresh time slots when returning to services
+    const newTimeSlots = generateTimeSlotsForDate(selectedDate)
+    setTimeSlots(newTimeSlots)
+    setSelectedTimeSlot(null)
   }
 
   const handleCompleteOrder = () => {
