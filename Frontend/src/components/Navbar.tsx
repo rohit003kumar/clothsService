@@ -213,9 +213,19 @@ const handleLogout = () => {
 
               <li>
 {/*                 <InstallPWAButton /> */}
-<a
+{/* <a
   href="/app-debug.apk"
   download
+  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+>
+  📲 Download Android App
+</a>
+ */}
+<a
+  href="https://cloths-backend.onrender.com/app-debug.apk"
+  download
+  target="_blank"
+  rel="noopener noreferrer"
   className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
 >
   📲 Download Android App
