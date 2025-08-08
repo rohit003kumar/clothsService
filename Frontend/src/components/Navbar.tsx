@@ -222,7 +222,7 @@ const handleLogout = () => {
 </a>
  */}
 <a
-  href="https://clothsservice-backend.onrender.com/app-debug.apk"
+  href="/app-debug.apk"
   download
   target="_blank"
   rel="noopener noreferrer"
