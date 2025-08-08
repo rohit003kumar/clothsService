@@ -200,7 +200,6 @@
 
 
 
-
 import React, { useEffect, useState } from 'react';
 import axios from '../utilss/axios'; // Adjust the import path as necessary
 import { Clock } from 'lucide-react';
@@ -248,13 +247,95 @@ export default function TimeSlotPicker({
       const id = first?.washermanId || first?.washerman?._id;
       if (typeof id === 'string' && id.length === 24) {
         setWashermanId(id);
+        
+        // ✅ FIXED: Automatically refresh time slots when washermanId is set
+        if (selectedDate) {
+          const fetchSlots = async () => {
+            setLoading(true);
+            try {
+              const res = await axios.get('/api/show/available-slots', {
+                params: { 
+                  washermanId: id, 
+                  date: selectedDate,
+                  _t: Date.now()
+                },
+              });
+              const slotsFromBackend: BackendSlot[] = res.data.enabledSlots || [];
+              const transformed: TimeSlot[] = slotsFromBackend.map((slot) => {
+                const hour = parseInt(slot.range.split(':')[0], 10);
+                let period = 'Morning';
+                if (hour >= 12 && hour < 17) period = 'Afternoon';
+                else if (hour >= 17 || hour < 5) period = 'Evening';
+                const spotsLeft = slot.maxBookings - slot.booked;
+                return {
+                  _id: slot.range,
+                  time: slot.range,
+                  period,
+                  available: spotsLeft > 0,
+                  maxOrders: slot.maxBookings,
+                  booked: slot.booked,
+                  spotsLeft,
+                };
+              });
+              setTimeSlots(transformed);
+            } catch (err) {
+              console.error('Error fetching time slots:', err);
+              setTimeSlots([]);
+            } finally {
+              setLoading(false);
+            }
+          };
+          fetchSlots();
+        }
       } else {
         console.warn('Invalid washerman ID in cart:', id);
       }
     }
-  }, []);
+  }, [selectedDate]);
 
-  // Fetch available slots from backend
+  // ✅ FIXED: Auto-refresh time slots when component mounts
+  useEffect(() => {
+    if (washermanId && selectedDate) {
+      const fetchSlots = async () => {
+        setLoading(true);
+        try {
+          const res = await axios.get('/api/show/available-slots', {
+            params: { 
+              washermanId, 
+              date: selectedDate,
+              _t: Date.now()
+            },
+          });
+          const slotsFromBackend: BackendSlot[] = res.data.enabledSlots || [];
+          const transformed: TimeSlot[] = slotsFromBackend.map((slot) => {
+            const hour = parseInt(slot.range.split(':')[0], 10);
+            let period = 'Morning';
+            if (hour >= 12 && hour < 17) period = 'Afternoon';
+            else if (hour >= 17 || hour < 5) period = 'Evening';
+            const spotsLeft = slot.maxBookings - slot.booked;
+            return {
+              _id: slot.range,
+              time: slot.range,
+              period,
+              available: spotsLeft > 0,
+              maxOrders: slot.maxBookings,
+              booked: slot.booked,
+              spotsLeft,
+            };
+          });
+          setTimeSlots(transformed);
+        } catch (err) {
+          console.error('Error fetching time slots:', err);
+          setTimeSlots([]);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchSlots();
+    }
+  }, []); // Run only once when component mounts
+
+  // ✅ FIXED: Continuous refresh mechanism for real-time updates
   useEffect(() => {
     const fetchSlots = async () => {
       if (!washermanId || !selectedDate) return;
@@ -265,7 +346,7 @@ export default function TimeSlotPicker({
           params: { 
             washermanId, 
             date: selectedDate,
-            _t: Date.now() // ✅ FIXED: Add cache-busting parameter
+            _t: Date.now()
           },
         });
 
@@ -434,9 +515,6 @@ export default function TimeSlotPicker({
     </div>
   );
 }
-
-
-
 
 
 
