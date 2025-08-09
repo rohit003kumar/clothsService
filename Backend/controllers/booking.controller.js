@@ -314,76 +314,27 @@ const getAllBookings = async (req, res) => {
 
 
 
-// const getAssignedBookings = async (req, res) => {
-//   try {
-//     const userId = req.userId;
-//     if (req.userRole !== "washerman") {
-//       return res.status(403).json({ message: "Access denied: Washermen only" });
-//     }
-
-//     const bookings = await Booking.find({ washerman: userId })
-//       .populate("guest", "name email contact address")
-//       .populate("productId", "name category serviceType image")
-//       .populate("washerman", "name email");
-
-//     res.status(200).json(bookings);
-//   } catch (err) {
-//     res.status(500).json({ message: "Fetching assigned bookings failed", error: err.message });
-//   }
-// };
-
-
-
-const axios = require("axios");
-
 const getAssignedBookings = async (req, res) => {
   try {
     const userId = req.userId;
+    if (req.userRole !== "washerman") {
+      return res.status(403).json({ message: "Access denied: Washermen only" });
+    }
 
     const bookings = await Booking.find({ washerman: userId })
-      .populate("guest", "name email contact location") // make sure location is fetched
+      .populate("guest", "name email contact address")
       .populate("productId", "name category serviceType image")
       .populate("washerman", "name email");
 
-    // Convert coordinates to addresses
-    const updatedBookings = await Promise.all(
-      bookings.map(async (booking) => {
-        let bookingObj = booking.toObject();
-
-        if (
-          bookingObj.guest &&
-          bookingObj.guest.location &&
-          bookingObj.guest.location.coordinates &&
-          bookingObj.guest.location.coordinates.length === 2
-        ) {
-          const [lon, lat] = bookingObj.guest.location.coordinates;
-
-          try {
-            const response = await axios.get("https://nominatim.openstreetmap.org/reverse", {
-              params: { lat, lon, format: "json" },
-              headers: { "User-Agent": "WashermanApp/1.0" }
-            });
-
-            bookingObj.guest.address = response.data.display_name || "Address not found";
-          } catch (err) {
-            bookingObj.guest.address = "Error fetching address";
-          }
-        } else {
-          bookingObj.guest.address = "Location not available";
-        }
-
-        return bookingObj;
-      })
-    );
-
-    res.status(200).json(updatedBookings);
+    res.status(200).json(bookings);
   } catch (err) {
-    res.status(500).json({
-      message: "Fetching assigned bookings failed",
-      error: err.message
-    });
+    res.status(500).json({ message: "Fetching assigned bookings failed", error: err.message });
   }
 };
+
+
+
+
 
 
 
