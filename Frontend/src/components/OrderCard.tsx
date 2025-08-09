@@ -86,6 +86,9 @@ const OrderCard: React.FC<OrderCardProps> = ({ order }) => {
               <p className="text-sm text-gray-500">Dhobi : {washermanName}</p>
               <p className="text-sm text-gray-500">Contact: {washermanContact}</p>
               <p className="text-sm text-gray-500">Created At: {new Date(createdAt).toLocaleString()}</p>
+              <p className="text-sm text-gray-600 mb-1">
+        Customer Address: {order.guest?.address || 'Address not available'}
+      </p>
             </div>
             <div
               className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(
