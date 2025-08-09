@@ -18,6 +18,8 @@ module.exports = mongoose.model("SlotTemplate", slotTemplateSchema);
 
 
 
+
+
 // const mongoose = require("mongoose");
 
 // const slotTemplateSchema = new mongoose.Schema({
