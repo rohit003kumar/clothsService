@@ -19,7 +19,7 @@ router.get("/slot-templates", isAuth, isAdmin, adminController.getAllSlotTemplat
 router.delete("/slot-template/:date", isAuth, isAdmin, adminController.deleteSlotTemplateByDate);
 
 // 📌 Close or open a full date
-router.patch("/slot-template/:date/close", isAuth, isAdmin, adminController.toggleDateClosed);
+// router.patch("/slot-template/:date/close", isAuth, isAdmin, adminController.toggleDateClosed);
 
 // 📌 Close or open a specific slot inside a date
 router.patch("/slot-template/:date/slot/:slotLabel/close", isAuth, isAdmin, adminController.toggleSlotClosed);
