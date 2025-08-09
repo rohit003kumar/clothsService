@@ -139,14 +139,14 @@ export default defineConfig({
         theme_color: '#0ea5e9',
         icons: [
           {
-            src: 'icons/icon-192x192.png',
+            src: 'icons/icon-192x192.webp',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/webp'
           },
           {
-            src: 'icons/icon-512x512.png',
+            src: 'icons/icon-512x512.webp',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/webp'
           }
         ],
         screenshots: [
