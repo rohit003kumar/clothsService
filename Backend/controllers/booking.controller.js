@@ -3,7 +3,6 @@
 
 
 
-
 const mongoose = require("mongoose");
 const  WashermanSlot  = require("../models/wavailable.model");
 const Booking = require("../models/booking.model");
