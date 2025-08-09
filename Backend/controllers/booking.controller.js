@@ -311,27 +311,6 @@ const getAllBookings = async (req, res) => {
   }
 };
 
-// // ✅ Washerman: Get assigned bookings
-// const getAssignedBookings = async (req, res) => {
-//   try {
-//     const userId = req.userId;
-//     if (req.userRole !== "washerman") {
-//       return res.status(403).json({ message: "Access denied: Washermen only" });
-//     }
-
-//     const bookings = await Booking.find({ washerman: userId })
-//       // .populate("productId", "name price")
-//       // .populate("guest", "name email address")
-//       // .populate("guest", "name email phone address")
-//       .populate("guest", "name email address contact")
-//        .populate("productId", "name category serviceType image")
-//       .populate("washerman", "name email");
-
-//     res.status(200).json(bookings);
-//   } catch (err) {
-//     res.status(500).json({ message: "Fetching assigned bookings failed", error: err.message });
-//   }
-// };
 
 
 
