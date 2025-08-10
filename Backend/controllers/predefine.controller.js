@@ -1,5 +1,6 @@
 
 
+
 // const SlotTemplate = require("../models/predefine.model");
 
 // // POST /api/admin/slot-template
