@@ -1,3 +1,12 @@
+
+
+
+
+
+
+
+
+
 "use client"
 import { useNavigate } from "react-router-dom"
 import { useState, useRef, useEffect } from "react"
@@ -1711,7 +1720,6 @@ const dashboardStats = {
                           {ordersForDate.map((order) => {
                             const product = order.productId || {};
                             const customer = order.guest || {};
-                            const address = customer.address || {};
                             const slot = order.slot || {};
 
                             return (
@@ -1744,8 +1752,41 @@ const dashboardStats = {
                                   <p><strong>Pickup Date:</strong> {new Date(order.date).toISOString().split("T")[0]}</p>
                                   <p><strong>Time Slot:</strong> {slot.range || "N/A"}</p>
 
-                                  {address.street && (
-                                    <p><strong>Address:</strong> {address.street}, {address.city}, {address.state} - {address.zip}</p>
+                                  {/* Pickup Address */}
+                                  {order.pickupAddress && (
+                                    <div className="address-section">
+                                      <p><strong>📍 Pickup Address:</strong></p>
+                                      <p className="ml-4">{order.pickupAddress.fullAddress}</p>
+                                      {order.pickupAddress.landmark && (
+                                        <p className="ml-4 text-sm text-gray-600">Landmark: {order.pickupAddress.landmark}</p>
+                                      )}
+                                      {order.pickupAddress.coordinates && (
+                                        <p className="ml-4 text-sm text-gray-500">
+                                          📍 {order.pickupAddress.coordinates.lat.toFixed(6)}, {order.pickupAddress.coordinates.lng.toFixed(6)}
+                                        </p>
+                                      )}
+                                    </div>
+                                  )}
+
+                                  {/* Delivery Address */}
+                                  {order.deliveryAddress && (
+                                    <div className="address-section">
+                                      <p><strong>🚚 Delivery Address:</strong></p>
+                                      <p className="ml-4">{order.deliveryAddress.fullAddress}</p>
+                                      {order.deliveryAddress.landmark && (
+                                        <p className="ml-4 text-sm text-gray-600">Landmark: {order.deliveryAddress.landmark}</p>
+                                      )}
+                                      {order.deliveryAddress.coordinates && (
+                                        <p className="ml-4 text-sm text-gray-500">
+                                          📍 {order.deliveryAddress.coordinates.lat.toFixed(6)}, {order.deliveryAddress.coordinates.lng.toFixed(6)}
+                                        </p>
+                                      )}
+                                    </div>
+                                  )}
+
+                                  {/* Fallback to old address structure if new ones don't exist */}
+                                  {!order.pickupAddress && !order.deliveryAddress && customer.address && customer.address.street && (
+                                    <p><strong>Address:</strong> {customer.address.street}, {customer.address.city}, {customer.address.state} - {customer.address.zip}</p>
                                   )}
 
                                   <p><strong>Status:</strong>{" "}
@@ -2318,6 +2359,15 @@ export default LaundrymanDashboard;
 
 
 
+
+
+
+
+
+
+
+
+
 // "use client"
 // import { useNavigate } from "react-router-dom"
 // import { useState, useRef, useEffect } from "react"
@@ -2566,7 +2616,6 @@ export default LaundrymanDashboard;
 //         ))}
 //       </GoogleMap>
 
-   
 //       <div style={{
 //         position: "absolute",
 //         bottom: "10px",
@@ -2718,39 +2767,75 @@ export default LaundrymanDashboard;
 
 
 
+//   // const handlePaymentStatusUpdate = async (orderId) => {
+//   //   const confirmPayment = window.confirm("Are you sure you received the cash?");
+//   //   if (!confirmPayment) return;
+
+//   //   try {
+//   //     const response = await apiFetch(`/api/booking/orders/${orderId}/mark-paid`, {
+//   //       method: "POST",
+//   //       headers: {
+//   //         "Content-Type": "application/json",
+//   //       },
+//   //     });
+
+//   //     const data = await response.json();
+
+//   //     if (data.success) {
+//   //       alert("✅ Payment marked as paid!");
+//   //       // Update the UI — for example:
+//   //       setAssignedOrders((prevOrders) =>
+//   //         prevOrders.map((order) =>
+//   //           order._id === orderId
+//   //             ? { ...order, paymentStatus: "paid" }
+//   //             : order
+//   //         )
+//   //       );
+//   //     } else {
+//   //       alert("❌ Could not mark payment as paid.");
+//   //     }
+//   //   } catch (error) {
+//   //     console.error("Error updating payment:", error);
+//   //     alert("⚠️ Something went wrong.");
+//   //   }
+//   // };
+
+
+
 //   const handlePaymentStatusUpdate = async (orderId) => {
-//     const confirmPayment = window.confirm("Are you sure you received the cash?");
-//     if (!confirmPayment) return;
+//   const confirmPayment = window.confirm("Are you sure you received the cash?");
+//   if (!confirmPayment) return;
 
-//     try {
-//       const response = await apiFetch(`/api/booking/orders/${orderId}/mark-paid`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//       });
+//   try {
+//     const token = localStorage.getItem("token"); // ✅ FIX: define token here
 
-//       const data = await response.json();
+//     const response = await apiFetch(`/api/booking/orders/${orderId}/mark-paid`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Authorization": `Bearer ${token}`, // ✅ Include token
+//       },
+//     });
 
-//       if (data.success) {
-//         alert("✅ Payment marked as paid!");
-//         // Update the UI — for example:
-//         setAssignedOrders((prevOrders) =>
-//           prevOrders.map((order) =>
-//             order._id === orderId
-//               ? { ...order, paymentStatus: "paid" }
-//               : order
-//           )
-//         );
-//       } else {
-//         alert("❌ Could not mark payment as paid.");
-//       }
-//     } catch (error) {
-//       console.error("Error updating payment:", error);
-//       alert("⚠️ Something went wrong.");
+//     const data = await response.json();
+
+//     if (data.success) {
+//       alert("✅ Payment marked as paid!");
+//       setAssignedOrders((prevOrders) =>
+//         prevOrders.map((order) =>
+//           order._id === orderId
+//             ? { ...order, paymentStatus: "paid" }
+//             : order
+//         )
+//       );
+//     } else {
+//       alert("❌ Could not mark payment as paid.");
 //     }
-//   };
-
+//   } catch (error) {
+//     console.error("Error updating payment:", error);
+//     alert("⚠️ Something went wrong.");
+//   }
+// };
 
 
 
@@ -3278,22 +3363,59 @@ export default LaundrymanDashboard;
 //   const today = new Date().toISOString().split("T")[0];
 //   const todaysOrders = assignedOrders.filter((order) => order.date === today);
 
-//   const dashboardStats = {
-//     totalOrders: todaysOrders.length,
-//     pendingOrders: todaysOrders.filter((order) => order.status === "Pending" || order.status === "Accepted").length,
-//     // completedOrders: todaysOrders.filter((order) => order.status === "Delivered").length,
-//     completedOrders: todaysOrders.filter(
-//   (order) => order.status === "DELIVERED"
-// ).length,
+// //   const dashboardStats = {
+// //     totalOrders: todaysOrders.length,
+// //     pendingOrders: todaysOrders.filter((order) => order.status === "Pending" || order.status === "Accepted").length,
+// //     // completedOrders: todaysOrders.filter((order) => order.status === "Delivered").length,
+// //     completedOrders: todaysOrders.filter(
+// //   (order) => order.status === "DELIVERED"
+// // ).length,
 
-//     activeSlots: Object.values(weeklySchedule).reduce(
-//       (total, day) => total + day.slots.filter((slot) => slot.enabled).length,
-//       0,
-//     ),
-//     totalSlots: Object.values(weeklySchedule).reduce((total, day) => total + day.slots.length, 0),
-//     todayEarnings: todaysOrders.reduce((total, order) => total + (order.totalAmount || 0), 0),
-//     weeklyEarnings: 2800,
-//   }
+// //     activeSlots: Object.values(weeklySchedule).reduce(
+// //       (total, day) => total + day.slots.filter((slot) => slot.enabled).length,
+// //       0,
+// //     ),
+// //     totalSlots: Object.values(weeklySchedule).reduce((total, day) => total + day.slots.length, 0),
+// //     todayEarnings: todaysOrders.reduce((total, order) => total + (order.totalAmount || 0), 0),
+// //     weeklyEarnings: 2800,
+// //   }
+
+// const dashboardStats = {
+//   totalOrders: todaysOrders.length,
+
+//   pendingOrders: todaysOrders.filter(
+//     (order) =>
+//       order.status.toLowerCase() === "pending" ||
+//       order.status.toLowerCase() === "accepted"
+//   ).length,
+
+//   completedOrders: todaysOrders.filter(
+//     (order) =>
+//       order.status.toLowerCase() === "delivered" &&
+//       order.paymentStatus?.toLowerCase() === "paid"
+//   ).length,
+
+//   activeSlots: Object.values(weeklySchedule).reduce(
+//     (total, day) => total + day.slots.filter((slot) => slot.enabled).length,
+//     0
+//   ),
+
+//   totalSlots: Object.values(weeklySchedule).reduce(
+//     (total, day) => total + day.slots.length,
+//     0
+//   ),
+
+//   todayEarnings: todaysOrders
+//     .filter(
+//       (order) =>
+//         order.status.toLowerCase() === "delivered" &&
+//         order.paymentStatus?.toLowerCase() === "paid"
+//     )
+//     .reduce((total, order) => total + (order.totalAmount || 0), 0),
+
+//   weeklyEarnings: 0, // Optional: You can calculate this dynamically later
+// };
+
 
 //   const dayNames = {
 //     monday: "Monday",
@@ -3553,7 +3675,7 @@ export default LaundrymanDashboard;
 //                     )}
 //                   </div>
 
-//                   <div className="manual-location-section" style={{ marginTop: "24px", padding: "16px", backgroundColor: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
+// {/*                   <div className="manual-location-section" style={{ marginTop: "24px", padding: "16px", backgroundColor: "#f8fafc", borderRadius: "8px", border: "1px solid #e2e8f0" }}>
 //                     <h4>🔧 Manual Location Input</h4>
 //                     <p style={{ fontSize: "14px", color: "#6b7280", marginBottom: "16px" }}>
 //                       If GPS detection doesn't work, you can manually enter your coordinates
@@ -3659,6 +3781,7 @@ export default LaundrymanDashboard;
 //                       📍 Set Manual Location
 //                     </button>
 //                   </div>
+//                    */}
 
 //                   <div className="map-section">
 //                     <h4>🗺️ Interactive Map - Click to Select Location</h4>
@@ -3982,7 +4105,8 @@ export default LaundrymanDashboard;
 //                                   <p><strong>Email:</strong> {customer.email || "N/A"}</p>
 //                                   <p><strong>Contact:</strong> {customer.contact || "N/A"}</p>
 //                                   <p><strong>Category:</strong> {product.category || "N/A"}</p>
-//                                   <p><strong>Service Type:</strong> {product.serviceType || "N/A"}</p>
+//                                   <p><strong>Service Type:</strong> {order.selectedOptions?.map(opt => opt.name).join(", ") || "N/A"}</p>
+
 //                                   <p><strong>Quantity:</strong> {order.quantity || 1}</p>
 //                                   <p><strong>Label:</strong> {slot.label || "N/A"}</p>
 //                                   <p><strong>Total Price:</strong> ₹{order.totalAmount || "N/A"}</p>
@@ -4493,7 +4617,7 @@ export default LaundrymanDashboard;
 //                               />
 //                             </div>
 //                             <div className={`text-xs mt-1 ${isFull ? "text-red-600 font-semibold" : "text-gray-600"}`}>
-//                               {booked}/{max} {isFull ? "(Slot Full)" : "Available"}
+//                               {/* {booked}/{max} {isFull ? "(Slot Full)" : "Available"} */}
 //                             </div>
 //                           </>
 //                         )}
@@ -4547,3 +4671,18 @@ export default LaundrymanDashboard;
 // };
 
 // export default LaundrymanDashboard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
