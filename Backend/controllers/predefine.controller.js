@@ -82,6 +82,7 @@
 
 
 
+
 const SlotTemplate = require("../models/predefine.model");
 const GlobalSlotTemplate = require("../models/globalSlotTemplate.model"); // Added GlobalSlotTemplate model
 
