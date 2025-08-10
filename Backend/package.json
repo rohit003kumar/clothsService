@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
 "axios": "^1.7.0",
+     "node-cron": "^3.x.x",
     "@faker-js/faker": "^9.8.0",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
