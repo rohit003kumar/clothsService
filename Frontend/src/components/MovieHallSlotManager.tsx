@@ -318,10 +318,10 @@ const MovieHallSlotManager: React.FC = () => {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 flex items-center">
                 <Film className="mr-3 h-8 w-8 text-blue-600" />
-                Movie Hall Slot Manager
+                 Slot Manager
               </h1>
               <p className="text-gray-600 mt-2">
-                Manage time slots and auto-generate dates like a movie hall
+                Manage time slots and auto-generate dates 
               </p>
             </div>
             <div className="flex gap-3">
