@@ -5116,8 +5116,8 @@ const AdminDashboard = () => {
             className={activePage === "TimeSlots" ? "active" : ""}
             onClick={() => handleNavClick("TimeSlots")}
           >
-            <span className="nav-icon">🎬</span>
-            <span className="nav-text">Movie Hall Slots</span>
+            <span className="nav-icon">⏰</span>
+            <span className="nav-text">Time Slots</span>
           </button>
           <button
             className={activePage === "Messages" ? "active" : ""}
